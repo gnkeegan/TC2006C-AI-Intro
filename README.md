@@ -1,10 +1,14 @@
-# Título
+# Predicción de Diabetes Utilizando Regresión Logística
 
-## Grant Nathaniel Keegan
+## Grant Nathaniel Keegan | A01700753
 
 ###### 
 
+###### Evidencia 2: Portafolio de Implementación
+
 ###### Clase: Inteligencia artificial avanzada para la ciencia de datos (Gpo 101)
+
+###### Instituto Tecnológico y de Estudios Superiores de Monterrey
 
 
 
@@ -16,13 +20,11 @@ José Antonio Cantoral Ceballos | Alejandro Fernández Vilchis
 
 
 
-
-
 ###### Introducción
 
 
 
-En mi evidencia para los módulos 2 y 3 de Inteligencia artificial avanzada para la ciencia de datos I, voy a diseñar uno de los algoritmos vistos en clase en un archivo de python.
+En mi evidencia para los módulos 2 y 3 de Inteligencia artificial avanzada para la ciencia de datos I, voy a diseñar un algoritmo de regresión logística para hacer predicciones 
 
 
 
@@ -52,7 +54,7 @@ python main.py
 
 
 
-
+Este proyecto incluye el archivo \*\*\*Predicción de Diabetes Usando Regresión Logística - Grant Keegan\*\*\* donde documento el proceso de desarrollo y resultados de este proyecto. Incluye
 
 
 
