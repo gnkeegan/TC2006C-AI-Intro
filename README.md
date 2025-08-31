@@ -74,5 +74,9 @@ A continuación, voy a anotar todos los recursos externos que utilicé para el d
 
 
 
-\[1] Loading Data
+\[1] World Health Organization. (2023, April 5). Diabetes. World Health Organization. https://www.who.int/news-room/fact-sheets/detail/diabetes
+
+
+
+\[2] Brownlee, J. (2019, June 17). How to implement logistic regression with stochastic gradient descent from scratch with Python. Machine Learning Mastery. https://machinelearningmastery.com/implement-logistic-regression-stochastic-gradient-descent-scratch-python
 
