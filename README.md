@@ -54,7 +54,7 @@ python main.py
 
 
 
-Este proyecto incluye el archivo \*\*\*Predicción de Diabetes Usando Regresión Logística - Grant Keegan\*\*\* donde documento el proceso de desarrollo y resultados de este proyecto. Incluye
+Este proyecto incluye el archivo ***Predicción de Diabetes Usando Regresión Logística - Grant Keegan*** donde documento el proceso de desarrollo y resultados de este proyecto. Incluye
 
 
 
