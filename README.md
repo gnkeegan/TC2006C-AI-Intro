@@ -4,11 +4,11 @@
 
 ###### 
 
-#### Evidencia 2: Portafolio de Implementación
+### Evidencia 2: Portafolio de Implementación
 
-#### Clase: Inteligencia artificial avanzada para la ciencia de datos (Gpo 101)
+### Clase: Inteligencia artificial avanzada para la ciencia de datos (Gpo 101)
 
-#### Instituto Tecnológico y de Estudios Superiores de Monterrey
+### Instituto Tecnológico y de Estudios Superiores de Monterrey
 
 
 
@@ -20,7 +20,7 @@ José Antonio Cantoral Ceballos | Alejandro Fernández Vilchis
 
 
 
-#### Introducción
+### Introducción
 
 
 
@@ -28,7 +28,7 @@ En mi evidencia para los módulos 2 y 3 de Inteligencia artificial avanzada para
 
 
 
-#### Cómo correr el código
+### Cómo correr el código
 
 
 
@@ -50,7 +50,7 @@ python main.py
 
 
 
-#### Documentación
+### Documentación
 
 
 
@@ -58,7 +58,7 @@ Este proyecto incluye el archivo ***Predicción de Diabetes Usando Regresión Lo
 
 
 
-#### Conclusión del proyecto
+### Conclusión del proyecto
 
 
 
@@ -66,7 +66,7 @@ Este proyecto fue retador en más de una manera. Me ayudó a
 
 
 
-#### Notas y Referencias
+### Notas y Referencias
 
 
 
