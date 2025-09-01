@@ -50,11 +50,19 @@ python main.py
 
 
 
+### Cómo correr el código
+
+
+
+Variables modificables. En logreg\_base.py, puedes modificar las variables a (alpha, learning rate) y epochs de ser necesario para sacar valores más ajustados.
+
+
+
 ### Documentación
 
 
 
-Este proyecto incluye el archivo ***Predicción de Diabetes Usando Regresión Logística - Grant Keegan*** donde documento el proceso de desarrollo y resultados de este proyecto. Incluye
+Este proyecto incluye el archivo ***Predicción de Diabetes Usando Regresión Logística - Grant Keegan*** donde documento el proceso de desarrollo y resultados de este proyecto a más detalle. Incluye el proceso de transformación
 
 
 
@@ -79,4 +87,14 @@ A continuación, voy a anotar todos los recursos externos que utilicé para el d
 
 
 \[2] Brownlee, J. (2019, June 17). How to implement logistic regression with stochastic gradient descent from scratch with Python. Machine Learning Mastery. https://machinelearningmastery.com/implement-logistic-regression-stochastic-gradient-descent-scratch-python
+
+
+
+### Referencias Adicionales
+
+
+
+\[1] GeeksforGeeks. (2024, January 19). Matplotlib tutorial. GeeksforGeeks. https://www.geeksforgeeks.org/python/matplotlib-tutorial/
+
+\# Para modificar las tablas de MatPlotLib.
 
