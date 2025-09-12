@@ -40,6 +40,11 @@ pip install pandas
 
 pip install matplotlib
 
+pip install scikit-learn
+
+pip install seaborn
+
+pip install xgboost
 
 
 En la terminal de comandos, ejecuta los archivos de python para correr los diferentes modelos:
