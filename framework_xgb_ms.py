@@ -4,6 +4,7 @@
 
 # ================================================ #
 # = INSTALACIóN Y CONFIGURACIóN DE DEPENDENCIAS == #
+# ===== DEFINICIÓN DE VARIABLES Y PARÁMETROS ===== #
 # ================================================ #
 
 # Instalamos dependencias.
@@ -13,7 +14,8 @@ import math # Para operaciones como exp, log y sqrt.
 import matplotlib.pyplot as plt # Para plotear los resultados en tablas.
 import seaborn as sns # Para graficar la matríz de confusión.
 from sklearn.linear_model import SGDClassifier
-import xgboost as xgb
+
+import xgboost as xgb # Nuestro algoritmo que utilizaremos para entrenar el modelo.
 
 # Dependencias de scikit learn.
 from sklearn.model_selection import train_test_split # Divide los resultados.
@@ -29,10 +31,6 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 # Leer el archivo modificado.
 df = pd.read_csv("diabetes_data_modified.csv")
-
-# ================================================ #
-# ===== DEFINICIÓN DE VARIABLES Y PARÁMETROS ===== #
-# ================================================ #
 
 print(df.columns)
 
@@ -72,50 +70,27 @@ X_val_scaled = escalamiento.fit_transform(X_val)
 # = ENTRENAMIENTO DE DATOS MUESTRA DE RESULTADOS = #
 # ================================================ #
 
-# Params with reg
+# Parametros de XGBoost.
 params = {
     'objective': 'multi:softmax',
-    'num_class': 4,
+    'num_class': 512,
     'reg_alpha': 1,
-    'reg_lambda': 1,
-    'eta': 0.1,
+    'reg_lambda': 2,
+    'eta': 0.05,
+    'max_depth': 4,
+    'min_child_weight': 1, 
+    'subsample': 0.8,
+    'colsample_bytree': 0.8,
     'eval_metric': ['mlogloss', 'merror']
 }
 
-model = xgb.XGBClassifier(**params)
+# Definimos epochs. MUY IMPORTANTE!
+epochs = 100
+
+model = xgb.XGBClassifier(**params) # Creamos el modelo con los parametros.
 eval_set = [(X_train_scaled, Y_train), (X_test_scaled, Y_test)]
 model.fit(X_train_scaled, Y_train, eval_set=eval_set, verbose=True)
 results = model.evals_result()
-
-epochs = len(results['validation_0']['mlogloss'])
-x_axis = range(0, epochs)
-
-# ================================================ #
-# =========== ES HORA DE GRAFICAR! =============== #
-# ================================================ #
-
-# Graphs
-
-
-plt.figure(figsize=(12, 6))
-plt.plot(x_axis, results['validation_0']['mlogloss'], label='Train Loss')
-plt.plot(x_axis, results['validation_1']['mlogloss'], label='Test Loss')
-plt.legend()
-plt.xlabel('Epochs')
-plt.ylabel('Log Loss')
-plt.title('Train and Test Loss over Epochs')
-plt.grid(True)
-plt.show()
-
-plt.figure(figsize=(12, 6))
-plt.plot(x_axis, 1 - np.array(results['validation_0']['merror']), label='Train Accuracy')
-plt.plot(x_axis, 1 - np.array(results['validation_1']['merror']), label='Test Accuracy')
-plt.legend()
-plt.xlabel('Epochs')
-plt.ylabel('Accuracy')
-plt.title('Train and Test Accuracy over Epochs')
-plt.grid(True)
-plt.show()
 
 train_predictions = model.predict(X_train_scaled)
 test_predictions = model.predict(X_test_scaled)
@@ -123,26 +98,49 @@ test_predictions = model.predict(X_test_scaled)
 train_accuracy = accuracy_score(Y_train, train_predictions)
 test_accuracy = accuracy_score(Y_test, test_predictions)
 
-print(f"Final Train Accuracy: {train_accuracy * 100:.2f}%")
-print(f"Final Test Accuracy: {test_accuracy * 100:.2f}%")
+# ================================================ #
+# =========== ES HORA DE GRAFICAR! =============== #
+# ================================================ #
 
-conf_matrix = confusion_matrix(Y_test, test_predictions)
+# Crear la figura con 3 subplots en una fila.
+fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+X_axis = range(0, epochs)
 
-plt.figure(figsize=(8, 6))
-plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
-plt.title('Confusion Matrix')
-plt.colorbar()
+# Subplot 3: Matríz de Confusión.
+axes[0].set_title('Matriz de Confusión')
+axes[0].set_ylabel('Predicción')
+axes[0].set_xlabel('Valor Real')
+cm = confusion_matrix(Y_test, test_predictions)
+im = axes[0].imshow(cm, interpolation='nearest', cmap=plt.cm.Greens)
 tick_marks = np.arange(len(np.unique(Y)))
-plt.xticks(tick_marks, np.unique(Y))
-plt.yticks(tick_marks, np.unique(Y))
+axes[0].set_xticks(tick_marks)
+axes[0].set_xticklabels(np.unique(Y))
+axes[0].set_yticks(tick_marks)
+axes[0].set_yticklabels(np.unique(Y))
+for i, j in np.ndindex(cm.shape):
+    axes[0].text(j, i, f"{cm[i, j]}")
 
-thresh = conf_matrix.max() / 2
-for i, j in np.ndindex(conf_matrix.shape):
-    plt.text(j, i, f"{conf_matrix[i, j]}", 
-             horizontalalignment="center", 
-             color="white" if conf_matrix[i, j] > thresh else "black")
+# Subplot 1: Perdidas sobre epochs.
+axes[1].set_title('Train and Test Loss over Epochs')
+axes[1].set_xlabel('Epochs')
+axes[1].set_ylabel('Log Loss')
+axes[1].plot(X_axis, results['validation_0']['mlogloss'], label='Train Loss')
+axes[1].plot(X_axis, results['validation_1']['mlogloss'], label='Test Loss')
+axes[1].legend()
+axes[1].grid(True, axis='y')
 
-plt.ylabel('True label')
-plt.xlabel('Predicted label')
+# Subplot 2: Curva de aprendizaje de train y test.
+axes[2].set_title('Train and Test Accuracy over Epochs')
+axes[2].set_xlabel('Epochs')
+axes[2].set_ylabel('Accuracy')
+axes[2].plot(X_axis, 1 - np.array(results['validation_0']['merror']), label='Train Accuracy')
+axes[2].plot(X_axis, 1 - np.array(results['validation_1']['merror']), label='Test Accuracy')
+axes[2].legend()
+axes[2].grid(True, axis='y')
+
+# Mostramos la gráfica entera.
 plt.tight_layout()
 plt.show()
+
+print(f"Final Train Accuracy: {train_accuracy * 100:.2f}%")
+print(f"Final Test Accuracy: {test_accuracy * 100:.2f}%")

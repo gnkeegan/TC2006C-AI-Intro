@@ -27,7 +27,7 @@ params = [0,0,0,0,0, # 15, para los 14 síntomas, más el peso de desplazamiento
           0,0,0,0,0]
 
 a = 0.1 # alpha. learning rate para entrenamiento. Modificar si es necesario.
-epochs = 500 # epochs para entrenamiento. Modificar si es necesario.
+epochs = 100 # epochs para entrenamiento. Modificar si es necesario.
 
 # Definimos nuestras variables de entrenamiento (80% de los datos) y test (20%).
 # Esto ayuda al modelo a predecir datos nuevos y evitar overfitting.
@@ -81,8 +81,8 @@ def entrenamiento(params, X, Y, a , epochs):
 # Vamos a hacer una gráfica de regresión logística para cada una de las 16 variables.
 
 # Crear subplots
-fig, axs = plt.subplots(4, 4, figsize=(20, 18))  # 4x4 = 16 gráficas
-axs = axs.flatten()
+fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+axs = axes.flatten()
 
 # Recorrer cada columna
 for i, columna in enumerate(X):
@@ -91,15 +91,14 @@ for i, columna in enumerate(X):
     # Calcular regresión lineal
     m, b = np.polyfit(x, y, 1)  # m = pendiente, b = intercepto
 
-    axs[i].scatter(x, y, alpha=0.3, color='orange', label='Pacientes')
-    axs[i].plot(x, m * x + b, color='blue', label='Línea de regresión')
+    axes[i].scatter(x, y, alpha=0.3, color='orange', label='Pacientes')
+    axes[i].plot(x, m * x + b, color='blue', label='Línea de regresión')
 
-    axs[i].set_title(columna, fontsize=12)
-    axs[i].set_xlabel(columna)
-    axs[i].set_ylabel('Diabetes (0 = No, 1 = Sí)')
-    axs[i].legend()
-    axs[i].grid(True)
+    axes[i].set_title(columna, fontsize=12)
+    axes[i].set_xlabel(columna)
+    axes[i].set_ylabel('Diabetes (0 = No, 1 = Sí)')
+    axes[i].legend()
+    axes[i].grid(True)
 
 plt.tight_layout()
-plt.suptitle("Regresión lineal por variable (1 gráfica por cada X)", fontsize=18, y=1.02)
 plt.show()
