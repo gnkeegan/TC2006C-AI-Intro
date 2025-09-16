@@ -56,7 +56,7 @@ Ejecutar los archivos en el siguiente orden en CMD:
 
 
 
-python limpiar\_datos,py
+python limpiar\_datos.py
 
 python logreg\_base.py
 
@@ -126,7 +126,7 @@ A continuación, voy a anotar todos los recursos externos que utilicé para el d
 
 
 
-\[10] GeeksforGeeks. (s. f.). Bias-Variance in Machine Learning. GeeksforGeeks. Recuperado el 14 de septiembre de 2025, de https://www.geeksforgeeks.org/machine-learning/bias-vs-variance-in-machine-learning/ Recurso de apoyo para calcular el bias y la varianza. 
+\[10] GeeksforGeeks. (s. f.). Bias-Variance in Machine Learning. GeeksforGeeks. Recuperado el 14 de septiembre de 2025, de https://www.geeksforgeeks.org/machine-learning/bias-vs-variance-in-machine-learning/ Recurso de apoyo para calcular el bias y la varianza.
 
 
 
